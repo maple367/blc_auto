@@ -47,7 +47,7 @@ with sync_playwright() as p:
         try:
             content_latest_text = content_latest.text_content()
             _ += 1
-            if _ >= 0:
+            if _ >= 360:
                 _ = 0
                 response("#切歌", chat_input, chat_enter, PreProcess=False) # 每半小时切歌防卡
                 response("小猫咪正在努力工作呢~", chat_input, chat_enter)
