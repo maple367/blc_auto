@@ -51,6 +51,8 @@ with sync_playwright() as p:
                 _ = 0
                 response("#切歌", chat_input, chat_enter, PreProcess=False) # 每半小时切歌防卡
                 response("小猫咪正在努力工作呢~", chat_input, chat_enter)
+                time.sleep(5)
+                continue
         except:
             content_latest_text = ""
             danmu_response = "弹幕获取失败，重新连接"
