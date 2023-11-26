@@ -1,0 +1,6 @@
+data/*
+speech/*
+__pycache__/
+test/
+/userdata/*
+local.config
