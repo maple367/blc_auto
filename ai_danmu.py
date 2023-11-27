@@ -47,9 +47,9 @@ with sync_playwright() as p:
         try:
             content_latest_text = content_latest.text_content()
             _ += 1
-            if _ >= 360:
+            if _ >= 360: # 360*5s=30min，每半小时切歌防卡
                 _ = 0
-                response("#切歌", chat_input, chat_enter, PreProcess=False) # 每半小时切歌防卡
+                response("#切歌", chat_input, chat_enter, PreProcess=False)
                 response("小猫咪正在努力工作呢~", chat_input, chat_enter)
                 response(f'现在时间是，{time.strftime("%H:%M:%S", time.localtime())}', chat_input, chat_enter)
                 continue
@@ -75,7 +75,7 @@ with sync_playwright() as p:
             print(f'弹幕：{content_latest_text}|回复：{danmu_response}'.encode('GBK', 'ignore').decode('GBK'), file=file)
             file.flush()
             continue
-        elif '#' in content_latest_text and ('想玩雪风' or '清秋枫' in content_latest_text):
+        elif '#' in content_latest_text and ('想玩雪风' or '清秋枫' or '葡萄qiqi' in content_latest_text):
             danmu_response = '小猫咪收到啦，正在处理~'
             response(danmu_response, chat_input, chat_enter)
             print(f'弹幕：{content_latest_text}|回复：{danmu_response}'.encode('GBK', 'ignore').decode('GBK'), file=file)
