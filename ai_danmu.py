@@ -47,14 +47,14 @@ with sync_playwright() as p:
         try:
             content_latest_text = content_latest.text_content()
             _ += 1
-            if _ >= 360: # 360*5s=30min，每半小时切歌防卡
+            if _ == -1: # 360*5s=30min，每半小时切歌防卡
                 _ = 0
                 response("#切歌", chat_input, chat_enter, PreProcess=False)
                 response("小猫咪正在努力工作呢~", chat_input, chat_enter)
                 response(f'现在时间是，{time.strftime("%H:%M:%S", time.localtime())}', chat_input, chat_enter)
                 continue
         except:
-            content_latest_text = ""
+            content_latest_text = "Bot："
             danmu_response = "网络连接失败，重新连接"
             response(danmu_response, chat_input, chat_enter)
             print(f'Warning: 弹幕：{content_latest_text}|回复：{danmu_response}'.encode('GBK', 'ignore').decode('GBK'), file=file)
